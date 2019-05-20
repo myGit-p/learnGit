@@ -8,14 +8,19 @@
 </head>
 <body>
     <div id="app">
+        <br>
         {{msg}}
+        {{bool?1:2}}
+        {{num++}}
     </div>
-    <script src="./node_modules//vue/dist/vue.min.js"></script>
+    <script src="./node_modules//vue/dist/vue.js"></script>
     <script>
         let vm = new Vue({
             el:'#app',
             data:{
-                msg:'hello world!',
+                msg: 'hello world!',
+                bool: false,
+                num: 1
             }
         })
     </script>
