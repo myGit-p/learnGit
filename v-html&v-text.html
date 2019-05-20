@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- {{}}可以认为是v-text的缩写，两者在大多数情况下等效 -->
+        <div v-text="msg"></div>
+        <div>{{msg}}</div>
+
+        <!-- v-html 和 v-text的区别在于是否可以识别内容中的标签 -->
+        <div v-html="msg"></div>
+        
+    </div>
+    <script src="./node_modules/vue/dist/vue.min.js"></script>
+    <script>
+
+        let vm = new Vue({
+            el: '#app',
+            data:{
+                msg:"<h1>v-on绑定事件</h1>",
+                arr:[1,2,3,4,5,6,7,8],
+                obj:{
+                    a:'测试字符串1',
+                    b:'测试字符串2',
+                    c:'测试字符串3',
+                    d:'测试字符串4'
+                }
+            }
+        })
+    </script>
+</body>
+</html>

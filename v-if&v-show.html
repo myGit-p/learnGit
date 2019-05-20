@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div v-if="str === 'a'">我是测试内容1</div>
+        <div v-else-if="str === 'b'">我是测试内容2</div>
+        <div v-else>我是测试内容3</div>
+
+        <template v-if="str == 'c' ">
+            <h3>111</h3>
+            <p>content1</p>
+            <p>content1</p>
+        </template>
+        <template v-else>
+            <h3>222</h3>
+            <p>content2</p>
+            <p>content2</p>
+        </template>
+
+        <button v-show="bool"></button>
+
+        <!-- v-if是直接删除或者添加元素来实现的显示隐藏的 -->
+        <!-- v-show是改变display属性来实现隐藏显示的，所以效率比较高 多用于单个元素显示隐藏-->
+    </div>
+    <script src="./node_modules/vue/dist/vue.min.js"></script>
+    <script>
+
+        let vm = new Vue({
+            el: '#app',
+            data:{      
+                str:'d',
+                bool:false,
+            }
+        })
+    </script>
+</body>
+</html>
