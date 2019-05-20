@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <button id="btn" @click="sayHi">点击</button>
+        <!-- vue中event对象的传递是$event -->
+        <a href="hao123.com" @click="stopDefault($event)">跳转</a>
+        <!-- 修饰符.prevent 阻止浏览器的默认行为 -->
+        <a href="hao123.com" @click.prevent="stopDf">跳转</a>
+        
+        <div id="container" @click="sayHi">
+            <button @click="sayHio($event)">按钮</button>
+            <button @click.stop="sayHioo">按钮</button>
+        </div>
+        <!-- keyCode修饰符,用于键盘事件 -->
+        <input type="text" @keyup.13="login">
+        <input type="text" @keyup.login="login">
+    </div>
+    <script src="./node_modules/vue/dist/vue.min.js"></script>
+    <script>
+        Vue.config.keyCodes.login = 13;
+        // config.keyCodes配置键盘事件
+        let vm = new Vue({
+            el: '#app',
+            data:{
+                msg:"v-on绑定事件",
+            },
+            methods:{
+                sayHi(){
+                    alert ("hello world!")
+                },
+                stopDefault(e){
+                    e.preventDefault();
+                    confirm('组织了浏览器的默认行为!');
+                },
+                stopDf(){
+                    alert('内置方法阻止浏览器默认行为!');
+                },
+                sayHio(e){
+                    e.stopPropagation();//阻止冒泡
+                    alert('阻止了冒泡!');
+                },         
+                sayHioo(){
+                    alert('内置方法阻止了冒泡!');
+                },
+                login(){
+                    alert(this.msg);
+                }
+                
+            }
+        })
+    </script>
+</body>
+</html>
