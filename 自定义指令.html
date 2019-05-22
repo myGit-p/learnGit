@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 自定义指令： v-name  -->
+        <input type="text" v-focus>
+        <!-- v-name = "value"的形式传入值-->
+        <!-- 指令中使用binding.value的形式使用 -->
+        <input type="text" v-color="color">
+    </div>
+    <script src="./node_modules/vue/dist/vue.min.js"></script>
+    <script>
+        // 全局指令
+        Vue.directive('focus', {
+            inserted: function(el,binding){
+                // el指向传入的dom对象
+                el.focus()
+            }
+        });
+        // Vue.directive('name', {inserted/binding: fackBack(el, binding)})
+         let vm = new Vue({
+             el: "#app",
+             data:{
+                 msg: 'test 1',
+                 word1: '我是用于测试的1',
+                 word2: '我是用于测试的2',
+                 word3: '我是用于测试的3',
+                 color: 'red'
+             },
+             
+            directives:{
+                'fo': {
+                    inserted: function(el, binding){
+                        el. focus()
+                    }
+                },
+                'color': {
+                    inserted: function(el, binding){
+                        el.style.background = binding.value
+                    }
+                }
+            }
+            // directives:{'name':{inserted/binding: fackBack(el, binding)}}
+         })   
+    </script>
+</body>
+</html>

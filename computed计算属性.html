@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        {{msg}}
+        <input type="text" placeholder="请输入" v-model="value1">+
+        <input type="text" placeholder="请输入" v-model="value2">=
+        {{equal}}
+
+        <!-- 显示arr中大于0的数字 -->
+        <ul>
+            <li v-for="item in arr1">{{item}}</li>
+        </ul>
+
+    </div>
+    <script src="./node_modules/vue/dist/vue.min.js"></script>
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data:{
+                msg:'test 1',
+                value1:0,
+                value2:1,
+                arr:[-1,2,-22,88,11,-333,86]
+            },
+            computed:{
+                equal: function(){
+                    return Number(this.value1) + Number(this.value2)
+                },
+                arr1: function(arr){
+                    // 过滤
+                    return this.arr.filter((item, index) => {
+                        return item >= 0
+                    })
+                }
+            }
+        })    
+    </script>
+</body>
+</html>

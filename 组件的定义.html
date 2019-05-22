@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <template id="p3">
+        <div>
+            <input type="text" value="你再瞅一个试试？"> 
+            <button>打洗你</button>
+        </div>
+    </template>
+
+    <template id="last">
+        <div>
+            <input type="text" value="劈里啪啦开打了">
+            <button>最后一个</button>
+            <login></login>
+        </div>
+    </template>
+
+    <diV id="app">
+        <tpl1></tpl1>
+        <br>
+        <br>
+        <tpl2></tpl2>
+        <br>
+        <br>
+        <tpl3></tpl3>
+        <br>
+        <br>
+        <last>
+            
+        </last>
+    </diV>
+    <script src="./node_modules/vue/dist/vue.min.js"></script>
+    <script>
+        // 定义方式1：
+        let tpl1 = Vue.extend({
+            template: 
+            "<div><button>点击</button>" +   
+            '<input type="text" value="瞅你咋地"></div>'
+        });
+        Vue.component('tpl1', tpl1);
+
+        // 方式2：
+        Vue.component('tpl2',{
+            template:"<button>别点我</button>"
+        });
+
+        // 方式3：
+        Vue.component('tpl3',{
+            template:'#p3'
+        });
+
+        Vue.component('last', {
+            template: '#last',
+            components:{
+                'login':{
+                    template: "<p>恭喜您注册成功！</p>"
+                },
+                data(){
+                    return {
+                        msg1:'我是子组件中的数据'
+                    }
+                }
+            },
+            data(){
+                return{
+                        msg: '我是父组件中的额数据'
+                }
+            }
+        })
+
+
+         
+       
+
+        let vm = new Vue({
+            el: '#app',
+            data:{
+                msg: 'hello'
+            },
+            // 子组件
+            components:{
+                'login':{
+                    template: '<p>恭喜注册成功！</p>'
+                },
+                data(){
+                    return {
+                        msg1: '我是子组件中的数据'
+                    }
+                }
+            }
+        })
+
+        // a.组件定义的方式有两种，在全局中定义和局部定义，局部定义的组件只能在该作用域中使用
+        // b.子组件只能在父组件的模板中使用
+        // c.组件跟组件之间的作用域都是相互独立的
+        // d.组件内定义的属性(data,methods,filters,directives,componentsde等)都是互不干扰的,包括父子组件之间
+    </script>
+</body>
+</html>
